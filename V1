@@ -1,0 +1,10 @@
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_community.llms import Ollama
+import streamlit as st
+
+prompt=ChatPromptTemplate.from_messages(
+    [("system","Help as an assistant"),("user","Question:{question}")])
+input_text=st.text_input("Ask your question!")
+llm=Ollama(model="Qwen2:0.5b")
+chain=prompt|llm
+if input_text:st.write(chain.invoke({"question":input_text}))
