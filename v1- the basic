@@ -5,6 +5,5 @@ import streamlit as sst #No SST doesn't mean sai-shiva-thadishetty
 prompt=ChatPromptTemplate.from_messages(
     [("system","Help as an assistant"),("user","Question:{question}")])
 input_text=sst.text_input("Ask your question!")
-llm=Ollama(model="Qwen2:0.5b")
-chain=prompt|llm
+llm=Ollama(model="Qwen2:0.5b"); chain=prompt|llm
 if input_text:sst.write(chain.invoke({"question":input_text}))
