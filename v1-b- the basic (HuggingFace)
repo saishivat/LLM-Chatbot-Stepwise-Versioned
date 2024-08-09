@@ -1,0 +1,12 @@
+from langchain_huggingface import HuggingFaceEndpoint
+from langchain_core.prompts import ChatPromptTemplate
+
+# Sign up to HuggingFace, copy model name & your Access Token
+llm = HuggingFaceEndpoint(repo_id='tiiuae/falcon-7b-instruct', 
+        huggingfacehub_api_token='hf_SaIsHiVa.ThAdIsHeTtY@gMaIl.CoM')
+
+prompt=ChatPromptTemplate.from_messages(
+    [("system","Respond to the questions as an AI assistant"),
+     ("user","Question:{question}")])
+chain=prompt|llm #that's how you combine prompts with LLMs "|"
+print(chain.invoke("Capital of Telangana?"))
