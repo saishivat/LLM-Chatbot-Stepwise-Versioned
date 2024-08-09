@@ -4,9 +4,9 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain.memory import ChatMessageHistory
 from langchain.schema import SystemMessage, AIMessage, HumanMessage
 
-# Initialize memory and model
+# Select your model from Langchain!
 model = 'tiiuae/falcon-7b-instruct'
-copied_token = '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'
+#Get a Token from Langchain after singing up
 llm = HuggingFaceEndpoint(repo_id=model, huggingfacehub_api_token=copied_token)
 
 prompt=ChatPromptTemplate.from_messages(
