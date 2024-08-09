@@ -1,0 +1,31 @@
+#Create you huggingface account, Create API token and place it in the blanks
+from langchain_huggingface import HuggingFaceEndpoint
+from langchain_core.prompts import ChatPromptTemplate
+from langchain.memory import ChatMessageHistory
+from langchain.schema import SystemMessage, AIMessage, HumanMessage
+
+# Initialize memory and model
+model = 'tiiuae/falcon-7b-instruct'
+copied_token = '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'
+llm = HuggingFaceEndpoint(repo_id=model, huggingfacehub_api_token=copied_token)
+
+prompt=ChatPromptTemplate.from_messages(
+    [("system","You are a helpful assistant and answer questions),
+     ("user","Question:{question}")
+    ]
+)
+llm_chain=prompt|llm
+
+history=ChatMessageHistory()
+
+print("Chatbot is running! Type 'stop' to end the chat.")
+while True:
+    question=input("Ask your Question:")
+    if question.lower()=='stop':
+        history.clear()
+        print("Conversation history cleared.")
+        break
+    history.add_user_message(question)
+    response=llm_chain.invoke(history.messages)
+    history.add_ai_message(response)
+    print(response)
