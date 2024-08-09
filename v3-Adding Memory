@@ -1,12 +1,11 @@
-#Create you huggingface account, Create API token and place it in the blanks
 from langchain_huggingface import HuggingFaceEndpoint
 from langchain_core.prompts import ChatPromptTemplate
 from langchain.memory import ChatMessageHistory
 from langchain.schema import SystemMessage, AIMessage, HumanMessage
 
-# Select your model from Langchain!
+# Select your model from HuggingFace!
 model = 'tiiuae/falcon-7b-instruct'
-#Get a Token from Langchain after singing up
+#Get a Token from HuggingFaceafter singing up
 llm = HuggingFaceEndpoint(repo_id=model, huggingfacehub_api_token=copied_token)
 
 prompt=ChatPromptTemplate.from_messages(
