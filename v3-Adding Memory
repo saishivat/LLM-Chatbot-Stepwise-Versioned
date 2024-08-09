@@ -14,10 +14,9 @@ prompt=ChatPromptTemplate.from_messages(
     ]
 )
 llm_chain=prompt|llm
-
 history=ChatMessageHistory()
 
-print("Chatbot is running! Type 'stop' to end the chat.")
+print("Chatbot is running! Type 'stop' to end it.")
 while True:
     question=input("Ask your Question:")
     if question.lower()=='stop':
