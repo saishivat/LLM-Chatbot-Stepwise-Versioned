@@ -2,5 +2,13 @@ from langgraph.prebuilt import create_react_agent
 from langchain.agents import load_tools
 from langchain_huggingface improt HuggingFaceEndpoint
 
-llm=HuggingFaceEndpoint(model=, HuggingFace)
-tool= load_tools(
+llm = HuggingFaceEndpoint(repo_id='tiiuae/falcon-7b-instruct', 
+        huggingfacehub_api_token='hf_SaIsHiVa.ThAdIsHeTtY@gMaIl.CoM')
+
+tool= load_tools(["llm-math"], llm=llm)
+agent=create_react_agent(llm, tools)
+
+messages=agent.invoke({"messages":[("human", "What is the square root of 121?")]})
+
+print(messages["messages"][-1].content
+
