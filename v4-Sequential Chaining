@@ -1,14 +1,23 @@
 from langchain_huggingface import HuggingFaceEndpoint
-from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.prompts import PromptTemplate
+from langchain.llms import LLMChain
 
 llm = HuggingFaceEndpoint(repo_id='tiiuae/falcon-7b-instruct', 
-        huggingfacehub_api_token='hf_SaIsHiVa.ThAdIsHeTtY@gMaIl.CoM')
+        huggingfacehub_api_token='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')
 
 prompt1=PromptTemplate(
-    [("system","Respond to the questions as an AI assistant"),
-     input_variables=[)])
+    input_variables={"product"},
+    template="You are an AI Chatbot Assistant. Name top 3 most sold {product}",
+    output_key={"prompt1_output"}
+    )
 prompt2=PromptTemplate(
-    [("system","Respond to the questions as an AI assistant"),
-     ("user","Question:{question}")])
-chain=prompt|llm #that's how you combine prompts with LLMs "|"
-print(chain.invoke("What job pays the highest?"))
+    input_variables={"prompt1_output"},
+    template="Give me specifications of each of {prompt1_output}"
+)
+chain1=prompt1|llm
+chain2=prompt2|llm
+seq_chain=chain2.add_chain(chain1, "prompt_output")
+#result=chain.invoke({"product":"cars"})
+#seq_chain=({"prompt1_output":prompt1|llm}|prompt2|llm)
+result=seq_chain.invoke({"product":"cars"})
+print(result)
