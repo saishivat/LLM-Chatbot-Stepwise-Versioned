@@ -1,0 +1,14 @@
+from langchain_huggingface import HuggingFaceEndpoint
+from langchain_core.prompts import ChatPromptTemplate
+
+llm = HuggingFaceEndpoint(repo_id='tiiuae/falcon-7b-instruct', 
+        huggingfacehub_api_token='hf_SaIsHiVa.ThAdIsHeTtY@gMaIl.CoM')
+
+prompt1=PromptTemplate(
+    [("system","Respond to the questions as an AI assistant"),
+     input_variables=[)])
+prompt2=PromptTemplate(
+    [("system","Respond to the questions as an AI assistant"),
+     ("user","Question:{question}")])
+chain=prompt|llm #that's how you combine prompts with LLMs "|"
+print(chain.invoke("What job pays the highest?"))
