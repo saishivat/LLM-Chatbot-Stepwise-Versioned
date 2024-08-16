@@ -1,0 +1,13 @@
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.vectorstores import Chroma
+import os
+
+embedding_function = OpenAIEmbeddings(openai_api_key="your_key")
+
+vectorstore = Chroma.from_documents(
+    docs,embedding=embedding_function,
+    persist_directory=os.getcwd())
+
+retriever = vectorstore.as_retriever(
+    search_type="similarity",
+    search_kwargs={"k": 3})
