@@ -1,0 +1,9 @@
+from langchain_community.document_loaders import PyPDFLoader
+#from langchain_community.document_loaders.csv_loader 
+  import CSVLoader
+
+loader = PyPDFLoader('Document name')
+#loader = CSVLoader('Document name')
+
+data = loader.load()
+print(data[0])
