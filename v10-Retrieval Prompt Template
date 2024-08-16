@@ -1,0 +1,11 @@
+message = """
+Answer the following question using the context provided:
+Context:
+{context}
+Question:
+{question}
+Answer:
+"""
+
+# Creating a chat prompt template from the above string
+prompt_template = ChatPromptTemplate.from_messages([("human", message)])
