@@ -1,0 +1,16 @@
+from langgraph.prebuilt import create_react_agent
+from langchain.agents import load_tools
+from langchain_OpenAI improt ChatOpenAI
+
+llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0,
+        openai_api_key='hf_SaIsHiVa.ThAdIsHeTtY@gMaIl.CoM')
+  
+@tool
+def employee_info(name: str) -> str:
+    employee_info = employees[employee['name'] == name]
+    return employee_info.to_string()
+
+agent = create_react_agent(llm, [employee_info])
+
+messages = agent.invoke({"messages": [("human", "Create a summary of employees")]})
+print(messages['messages'][-1].content)
