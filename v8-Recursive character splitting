@@ -1,0 +1,12 @@
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+text="Copy any text"
+
+split = RecursiveCharacterTextSplitter(
+    separators=["\n", " ", ""],
+    chunk_size=chunk_size,
+    chunk_overlap=chunk_overlap)
+
+chunks = splitter.split_text(text) 
+print(chunks)
+print([len(chunk) for chunk in chunks])
